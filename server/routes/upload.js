@@ -1,10 +1,9 @@
-const uploadcontroller =require('./../controllers/upload.ctrl')
-const multipart =require('connect-multiparty');
-const multipartWare =multipart();
+const uploadcontroller = require('./../controllers/upload.ctrl')
+// const multipart = require('connect-multiparty');
+// const multipartWare = multipart();
 
-module.exports= (router) => {
-
+module.exports = (router) => {
     router
-    .route('/upload')
-    .get(uploadcontroller.upload)
+        .route('/upload')
+        .get(uploadcontroller.upload)
 }

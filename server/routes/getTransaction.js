@@ -1,6 +1,6 @@
 const getTrxcontroller =require('./../controllers/getTransaction.ctrl')
-const multipart =require('connect-multiparty');
-const multipartWare =multipart();
+// const multipart =require('connect-multiparty');
+// const multipartWare =multipart();
 
 module.exports= (router) => {
     // router
