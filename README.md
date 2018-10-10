@@ -1,0 +1,1 @@
+# EosJS Storing File Example
