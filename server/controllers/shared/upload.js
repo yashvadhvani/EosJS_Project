@@ -1,29 +1,22 @@
-const fs = require("fs");
-let upload = eos => {
-  let str = fs
-    .readFileSync(
-      "./server/controllers/files/SampleTextFile_500kb.txt",
-      (err, res) => {
-        if (!err) return res;
-      }
-    )
-    .toString();
-  eos.contract("upload").then(contract => {
+var CryptoJS = require("crypto-js");
+
+let upload = (eos, result, str) => {
+  let ciphertext = CryptoJS.AES.encrypt(str, "hello");
+  eos.contract("storage").then(contract => {
     contract
       .upload(
         {
-          author: "user",
-          id: 2324,
-          hash: str
+          author: "myaccount",
+          id: Math.floor(Math.random() * 10000),
+          hash: ciphertext
         },
         {
-          authorization: ["user@active"]
+          authorization: ["myaccount@active"]
         }
       )
       .then(res => {
-        fs.writeFileSync("SampleTextFile_500kb.json", JSON.stringify(res), {
-          flag: "w"
-        });
+        console.log(res);
+        result.json(res);
       })
       .catch(err => {
         console.log(err);
